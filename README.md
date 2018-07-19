@@ -1,7 +1,7 @@
 # LGH_cluster
 Using local graphlet frequency to predict Hawkes process event count
 
-Note: LGH_server is desired to run on a cluster. It has been tested on big red 2, a supercomputer at Indiana University. 
+Note: LGH_server is desired to run on a cluster. It has been tested on Big Red II at Indiana University https://kb.iu.edu/d/bcqt. 
 
 ## Set up
 The following modules need to be loaded on the cluster. 
