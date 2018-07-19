@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-sys.path.insert(0, './LoGraPov_v1.0')
+sys.path.insert(0, '../LoGraPov_v1.0')
 import os
 import numpy as np
 import networkx as nx
@@ -27,16 +27,16 @@ def main():
         os.system("mkdir rewired && chmod u+rwx rewired")
         os.system("mkdir hawkes && chmod u+rwx hawkes")
         os.system("mkdir eclog && chmod u+rwx eclog")
-        os.system("python3 ./LoGraPov_v1.0/initialize.py %s" % (config_file))
+        os.system("python3 ../LoGraPov_v1.0/initialize.py %s" % (config_file))
 
     elif task == 'rewire':
   	    os.system("qsub submit_rewiring.pbs")
 
     elif task == 'hawkes':
-        os.system("python3 ./LoGraPov_v1.0/wr_bundle_sample_hawkes.py %s && qsub submit_bundle_sample_hawkes.pbs" % (config_file))
+        os.system("python3 ../LoGraPov_v1.0/wr_bundle_sample_hawkes.py %s && qsub submit_bundle_sample_hawkes.pbs" % (config_file))
 
     elif task == 'eclog':
-        os.system("python3 ./LoGraPov_v1.0/format_eclog_input.py %s && python3 ./LoGraPov_v1.0/wr_submit_eclog.py %s && python3 ./LoGraPov_v1.0/submit_mul_eclog.py %s" % (config_file, config_file, config_file))
+        os.system("python3 ../LoGraPov_v1.0/format_eclog_input.py %s && python3 ../LoGraPov_v1.0/wr_submit_eclog.py %s && python3 ../LoGraPov_v1.0/submit_mul_eclog.py %s" % (config_file, config_file, config_file))
 
     elif task == 'node_centric':
         os.system("qsub submit_edge2node.pbs")
