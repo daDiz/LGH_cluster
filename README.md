@@ -73,3 +73,18 @@ This fits a linear regression model, writing r2-score and mse to linear_regressi
 For edge list file format, please see soc-dolphins/soc-dolphins.txt. 
 
 For config.json format, please see soc-dolphins/config.json.
+
+## parallelism illustration
+```
+      initialize
+           |
+        rewire
+       /      \
+      /        \
+   hawkes     eclog 
+      \        /
+       \      /
+     node_centric
+           |
+   linear_regression
+ ```
