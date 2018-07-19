@@ -1,0 +1,96 @@
+{
+	"initialize": {
+		"rewire": {
+			"nodes": 1,
+			"ppn": 1,
+			"walltime": "00:10:00"
+		},
+		"hawkes": {
+			"nodes": 3,
+			"ppn": 32,
+			"walltime": "01:00:00:00",
+			"num_cores": 96
+		},
+		"node_centric": {
+			"nodes": 1,
+			"ppn": 1,
+			"walltime": "01:00:00"
+		},
+		"linear_regression": {
+			"nodes": 1,
+			"ppn": 1,
+			"walltime": "01:00:00"
+		}
+	},
+
+	"rewire": {
+		"_comment 0": "src_graph - edge list of the original graph",
+		"_comment 1": "nswap - number of swaps during each rewiring", 
+		"_comment 2": "max_tries - max number of tries in double_edge_swap ",
+		"_comment 3": "num_graphs - num of graphs to be generated through rewiring",
+		"_comment 4": "dest_path - dir and prefix of the rewired graphs",
+		"src_graph": "soc-dolphins.txt",
+		"nswap": 1000,
+		"max_tries": 10000,
+		"num_graphs": 93,
+		"dest_path": "rewired/soc-dolphins"
+	},
+	
+	"hawkes": {
+		"_comment 0": "input_dir - dir and prefix of the input rewired graphs",
+		"_comment 1": "src_graph - prefix of the input graph",
+		"_comment 2": "num_graphs - num of graphs to be performed hawkes",
+		"_comment 3": "max_lamb - maximum lambda, if null, will be calculated from adj matrix",
+		"_comment 4": "alpha - theta = alpha * 1 / max_lamb",
+		"_comment 5": "num_samples - num of samples of hawkes",
+		"_comment 6": "distinct - if true, each node in a network is visisted at most once, otherwise, visited unlimited times",
+		"input_dir": "data_dir/soc-dolphins",
+		"src_graph": "soc-dolphins",
+		"num_graphs": 93,
+		"max_lamb": null,
+		"alpha": 0.99,
+		"num_samples": 1000,
+		"distinct": true
+	},
+
+	"eclog": {
+		"_comment 0": "format_input - input rewired graphs to be converted to eclog input format",
+		"_comment 1": "num_graphs - num of graphs to run eclog",
+		"_comment 2": "src_graph - prefix of graphs to be eclog",
+		"_comment 3": "num_threads - num of threads for eclog",
+		"_comment 4": "eclog_mode - mode of eclog, can be local, unique, all, see eclog for details",
+		"_comment 5": "output_dir - the folder where eclog outputs go",
+		"format_input": "data_dir/soc-dolphins/rewired/soc-dolphins",
+		"num_graphs": 93,
+		"src_graph": "../rewired/soc-dolphins",
+		"num_threads": 32,
+		"eclog_mode": "local",
+		"output_dir": "data_dir/soc-dolphins/eclog"
+	},
+
+	"node_centric": {
+		"_comment 0": "src_path - dir and prefix of edge-centric graphlet counts",
+		"_comment 1": "num_graphs - num of graphs to be converted to node-centric graphlet counts",
+		"_comment 2": "eclog_mode - eclog mode, must be the same as the eclog_mode above",
+		"src_path": "rewired/soc-dolphins",
+		"num_graphs": 93,
+		"eclog_mode": "local"
+	},
+
+	"linear_regression": {
+		"_comment 0": "src_x - data",
+		"_comment 1": "src_y - labels",
+		"_comment 2": "num_graphs - num of graphs",
+		"_comment 3": "test_size - train-test split",
+		"_comment 4": "lfc - if true, data are converted to log frequency distribution",
+		"_comment 5": "ylog - if true, labels are converted to log",
+		"_comment 6": "parafile - stores coefficients of the linear regression model",
+		"src_x": "rewired/soc-dolphins",
+		"src_y": "hawkes/sample_hawkes",
+		"num_graphs": 93,
+		"test_size": 0.3,
+		"lfc": true,
+		"ylog": true,
+		"parafile": "soc-dolphins_linear_coef.txt"
+	}
+}
