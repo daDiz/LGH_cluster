@@ -69,3 +69,7 @@ $ ./run_lograpov.py linear_regression config.json
 ```
 This fits a linear regression model, writing r2-score and mse to linear_regression.log and coefficients of the linear regression to *_linear_coef.txt.
 
+## input file format
+For edge list file format, please see soc-dolphins/soc-dolphins.txt. 
+
+For config.json format, please see soc-dolphins/config.json.
